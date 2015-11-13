@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/pinterestclone-dev'
+    uri: 'mongodb://meanuser:meanpass@ds053774.mongolab.com:53774/heroku_b9bkvrxc'
   },
 
   seedDB: true
