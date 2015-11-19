@@ -14,4 +14,9 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 
+router.get('/getfollow/:id', controller.getFollows);
+
+router.post('/addfollow/:id', controller.addFollowing);
+router.post('/removefollow/:id', controller.removeFollowing);
+
 module.exports = router;

@@ -1,0 +1,17 @@
+<form name="form" class="addCollection" ng-submit="addCollection(form)" ng-controller="DashboardCtrl">
+	<h1>Add A Collection</h1>
+	<p>Enter both a name and a image url in order to create your own collection! If the image URL is not found, it will be replaced with a placeholder image. Adding a collection will automatically favorite it for you.</p>
+	<div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+	                                    'has-error': form.name.$invalid && submitted }">
+	  <label>Collection Name</label>
+	  <input type="text" name="name" class="form-control" ng-model="collection.name"required/>
+	  <p class="help-block" ng-show="form.name.$error.required && submitted">A name is required</p>
+	</div>
+	<div class="form-group" ng-class="{ 'has-success': form.image.$valid && submitted,
+	                                    'has-error': form.image.$invalid && submitted }">
+	  <label>Image URL</label>
+	  <input type="text" name="image" class="form-control" ng-model="collection.image"required/>
+	  <p class="help-block" ng-show="form.image.$error.required && submitted">An Image URL is required</p>
+	</div>
+	<input type="submit" value="Add Collection">
+</form>

@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="col-md-12 text-center">
+	<img><span>This is where your image should go</span>
+	<h1>Welcome NAME{{Firstname}}</h1>
+</header>
+<div class="container">
+<div class="dashboard-wrapper row">
+	<div class="link-section col-md-6 col-md-offset-3">
+		<ul>
+			<li><a href="">Favorites</a></li>
+			<li><a href="">Likes</a></li>
+			<li><a href="" ng-click="getFollows()">Following</a></li>
+		</ul>
+	</div>
+	<div class="main-section col-md-12">
+		<button class="btn btn-default" ng-click="addCollectionButton()">Add Collection</button>
+
+		<div class="collection-wrap">
+			<div class="collection col-md-3" ng-repeat="collection in collectionList" >
+				<img ng-src="{{collection.image}}" alt="Image of {{collection.name}}">
+				<h3>{{collection.name}}</h3>
+				<button class="btn btn-default" ng-click="removeFollow(collection)">Unfollow</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</div>

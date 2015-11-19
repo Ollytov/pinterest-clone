@@ -27,12 +27,39 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
+  newUser.username = '';
+  newUser.about = '';
+  newUser.picture = '';
+  newUser.favorites = [];
+  newUser.likes = [];
+  newUser.following = [];
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });
 };
+
+exports.getFollows = function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if (err) return res.status(500).send(err);
+    res.status(200).send(user.following);
+  })
+}
+
+exports.addFollowing = function(req, res) {
+  User.findByIdAndUpdate(req.params.id, {$push: {following: req.body.follow}}, function(err, data) {
+        if (err) return res.status(500).send(err);
+        res.status(200).send("Ok");
+  });
+}
+
+exports.removeFollowing = function(req, res) {
+  User.findByIdAndUpdate(req.params.id, {$pull : {following : { name : req.body.name }}}, function(err, data) {
+        if (err) return res.status(500).send(err);
+        res.status(200).send("Ok");
+  });
+}
 
 /**
  * Get a single user
