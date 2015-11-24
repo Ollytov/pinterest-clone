@@ -5,6 +5,9 @@ angular.module('pinterestCloneApp')
   	$scope.getCurrentUser = Auth.getCurrentUser;
     $scope.user = $scope.getCurrentUser();
     $scope.collection = {};
+    $scope.posts = true;
+    $scope.likes = false;
+    $scope.collections = false;
 
     $scope.userid = $scope.user;
 
@@ -19,11 +22,27 @@ angular.module('pinterestCloneApp')
 	    }, function(err) {
 	    	console.log(err);
 	    });
+        console.log($scope.user.posts);
+        $scope.postList = $scope.user.posts;
+        console.log($scope.postList);
+
+        // if ($scope.user.posts !== undefined) {
+        //     console.log(JSON.stringify($scope.user.posts));
+        //     // $http.get('/api/posts/getPosts', $scope.user.posts).then(function(response) {
+        //     //     console.log("Success!");
+        //     //     console.log(response);
+        //     // }, function(err) {
+        //     //     console.log(err);
+        //     // });
+        // }
     }, 1000);
-   
+
+    
+    // angular.forEach($scope.user.posts, function(value) {
+    //     console.log(value);
+    // });
    
     $scope.addCollectionButton = function() {
-
     	dialogs.create('app/dashboard/dashboard-addCollection.html');
     }
 
@@ -51,7 +70,28 @@ angular.module('pinterestCloneApp')
     	})
     }
 
+    $scope.getPosts = function() {
+    	$scope.posts = true;
+    	$scope.likes = false;
+    	$scope.collections = false;
+    }
+
+    $scope.getLikes = function() {
+    	$scope.posts = false;
+    	$scope.likes = true;
+    	$scope.collections = false;
+    }
+
+    $scope.getFollows = function() {
+    	$scope.posts = false;
+    	$scope.likes = false;
+    	$scope.collections = true;
+    }
+
+
+
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('books');
     });
+
   });

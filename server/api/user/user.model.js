@@ -11,7 +11,7 @@ var UserSchema = new Schema({
   about: String,
   email: { type: String, lowercase: true },
   picture: String,
-  favorites: [],
+  posts: [],
   likes: [],
   following: [],
   role: {
@@ -65,13 +65,13 @@ UserSchema
  * Validations
  */
 
-// Validate empty email
+// Validate empty Username
 UserSchema
-  .path('email')
-  .validate(function(email) {
+  .path('username')
+  .validate(function(username) {
     if (authTypes.indexOf(this.provider) !== -1) return true;
-    return email.length;
-  }, 'Email cannot be blank');
+    return username.length;
+  }, 'Username cannot be blank');
 
 // Validate empty password
 UserSchema

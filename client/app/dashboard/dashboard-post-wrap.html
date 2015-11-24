@@ -1,0 +1,20 @@
+<div class="allposts-wrap">
+	<h1 class="text-center">Posts</h1>
+	<p class="text-center">Below you will find all of the posts that you have created!</p>
+
+	<div class="masonry-wrap" masonry="{'gutter': 10, 'isFitWidth': true}">
+
+		<div class="masonry-brick" ng-repeat="post in postList">
+			<img ng-src="{{post.image}}" err-src="assets/images/image_notfound.jpg">
+			<h1 class="text-center">{{post.title}}</h1>
+			<p class="text-center">{{post.description}}</p>
+			<hr>
+			<p class="text-center"><strong>Posted By:</strong><br>
+			{{post.author}},<br>
+			{{post.date}}</p>
+			<hr>
+			<p class="postCollect text-center">Found in: <a href="/posts/category/{{post.postCollection}}">{{post.postCollection}}</a></p>
+		</div>
+
+	</div>
+</div>

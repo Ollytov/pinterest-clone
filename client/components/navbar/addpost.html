@@ -1,0 +1,25 @@
+<form class="addpostModal" ng-submit="addPost(form)" name="form" ng-controller="NavbarCtrl">
+
+  <div class="form-group">
+    <label for="postTitle">Post Title</label>
+    <input type="text" class="form-control" name="title" ng-model="newPost.postTitle" placeholder="Post Title" required>
+  </div>
+
+  <div class="form-group">
+    <label for="postImage">Image URL</label>
+    <input type="text" class="form-control" name="image" ng-model="newPost.postImage" placeholder="Image URL" required>
+  </div>
+
+  <div class="form-group">
+    <label for="postDescription">Description</label>
+    <input type="text" class="form-control" name="description" ng-model="newPost.postDescription" placeholder="Describe your post!" required>
+  </div>
+
+  <div class="form-group">
+    <label for="postCollection">Collection</label>
+    <select class="form-control" name="collection" ng-model="newPost.postCollection" ng-options="collection.name for collection in allCollections" required>
+    </select>
+  </div>
+
+  <input type="submit" class="btn btn-default" value="Add Post">
+</form>

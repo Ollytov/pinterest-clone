@@ -27,10 +27,11 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
-  newUser.username = '';
+  newUser.name = '';
+  newUser.email = '';
   newUser.about = '';
   newUser.picture = '';
-  newUser.favorites = [];
+  newUser.posts = [];
   newUser.likes = [];
   newUser.following = [];
   newUser.save(function(err, user) {
@@ -39,6 +40,17 @@ exports.create = function (req, res, next) {
     res.json({ token: token });
   });
 };
+
+
+
+exports.addPost = function(req, res) {
+  User.findByIdAndUpdate(req.body.userid, {$push: {posts: req.body.postid}}, function(err, data) {
+    if (err) return res.status(500).send(err);
+    res.status(200).send("Ok");
+  });
+}
+
+
 
 exports.getFollows = function(req, res) {
   User.findById(req.params.id, function(err, user) {

@@ -15,7 +15,18 @@
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.6.0",
     "angular-ui-router": "~0.2.15",
-    "angular-dialog-service": "~5.2.8"
+    "angular-dialog-service": "~5.2.8",
+    "jquery-bridget": "~1.1.0",
+    "angular-masonry": "~0.13.0",
+    "outlayer": "~1.4.2"
+  },
+  "overrides": {
+    "outlayer": {
+      "main": [
+        "item.js",
+        "outlayer.js"
+      ]
+    }
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
@@ -23,6 +34,6 @@
   },
   "resolutions": {
     "angular-bootstrap": "~0.11.0",
-    "angular": "1.4.7"
+    "angular": ">=1.2.*"
   }
 }

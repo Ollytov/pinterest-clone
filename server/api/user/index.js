@@ -16,6 +16,8 @@ router.post('/', controller.create);
 
 router.get('/getfollow/:id', controller.getFollows);
 
+router.post('/addpost', controller.addPost);
+
 router.post('/addfollow/:id', controller.addFollowing);
 router.post('/removefollow/:id', controller.removeFollowing);
 
