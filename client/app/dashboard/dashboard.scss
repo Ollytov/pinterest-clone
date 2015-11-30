@@ -1,14 +1,53 @@
+html, 
+body, 
+.dashboard-container {
+	height: 100%;
+	min-height: 100%;
+}
+
+.dashboard-container {
+	background: $panel;
+	border-bottom: 5px solid black;
+}
+
 header {
-	height: 250px;
-	border-bottom: 1px solid black;
+	height: 350px;
+	border-top: 5px solid $background;
+	border-bottom: 5px solid $background;
+	padding: 20px;
+}
+
+header,
+.link-section {
+	background: $panel;
 }
 
 .link-section {
-	border-bottom: 1px solid black;
+	border: 5px solid $background;
+	border-top: 0;
+	ul {
+		padding: 0;
+		li {
+			list-style: none;
+			margin: 10px 10px 0 10px;
+			display: inline-block;
+			a {
+				width: 130px;
+				font-family: Georgia;
+				border:  1px solid $background;
+			}
+		}
+	}
 }
 
 .addCollection {
 	padding: 30px;
+}
+
+.dash-image {
+	width: 250px;
+	height: 250px;
+	border: 2px solid black;
 }
 
 .collection {
@@ -29,4 +68,17 @@ header {
 		right: 0;
 		margin: 3px;
 	}
+}
+
+.allposts-wrap {
+	margin-top: 0;
+	.masonry-wrap {
+		margin-top: 10px;
+	}
+}
+
+.btn-save {
+	width: 130px;
+	font-family: Georgia;
+	border:  1px solid $background;
 }

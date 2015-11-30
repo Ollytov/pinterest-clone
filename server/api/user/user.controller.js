@@ -32,7 +32,6 @@ exports.create = function (req, res, next) {
   newUser.about = '';
   newUser.picture = '';
   newUser.posts = [];
-  newUser.likes = [];
   newUser.following = [];
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
@@ -40,6 +39,29 @@ exports.create = function (req, res, next) {
     res.json({ token: token });
   });
 };
+
+exports.changeInformation = function(req, res) {
+  console.log("Changing Information!");
+  var userId = req.body._id.$viewValue;
+  console.log(userId);
+  User.findById(userId, function (err, user) {
+
+    if (req.body.name) {
+      user.name = req.body.name.$viewValue;
+    }
+    if (req.body.picture) {
+      user.picture = req.body.picture.$viewValue;
+    }
+    if (req.body.email) {
+      user.email = req.body.email.$viewValue;
+    }
+
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.status(200).send('OK');
+    });
+  });
+}
 
 
 
@@ -78,11 +100,9 @@ exports.removeFollowing = function(req, res) {
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-
   User.findById(userId, function (err, user) {
     if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
-    res.json(user.profile);
+    res.json(user);
   });
 };
 

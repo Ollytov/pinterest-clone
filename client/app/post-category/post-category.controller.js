@@ -10,7 +10,14 @@ angular.module('pinterestCloneApp')
         		tempList.push(response.data[i]);
         	}
         }
+        $scope.newPosts = [];
         $scope.postList = tempList;
+        socket.syncUpdates('post', $scope.newPosts, function() {
+            if ($scope.newPosts[0].postCollection === $state.params.category) {
+                $scope.postList.push($scope.newPosts);
+            }
+            $scope.newPosts = [];
+        });
     }, function(err) {
         console.log(err);
     });

@@ -7,7 +7,6 @@ angular.module('pinterestCloneApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'dialogs.main',
   'wu.masonry'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -50,6 +49,23 @@ angular.module('pinterestCloneApp', [
         element.bind('error', function() {
           if (attrs.ngHide != attrs.errSrc) {
             attrs.$set('class', 'ng-hide');
+          }
+        });
+      }
+    }
+  })
+
+  .directive('profileErrSrc', function() {
+    return {
+      link: function(scope, element, attrs) {
+        element.bind('error', function() {
+          if (attrs.ngSrc != attrs.profileErrSrc) {
+            attrs.$set('ngSrc', attrs.profileErrSrc);
+          }
+        });
+        attrs.$observe('ngSrc', function(value) {
+          if (!value && attrs.profileErrSrc) {
+            attrs.$set('src', attrs.profileErrSrc);
           }
         });
       }

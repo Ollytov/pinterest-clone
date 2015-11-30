@@ -1,16 +1,9 @@
 <div class="following-wrap">
 	<div class="text-center">
-		<h1>Following</h1>
-		<p>Listed below you will find all of the collections that you are following!<br>
-		The collections that you follow determine which posts will appear in your feed.<br>
-		To create a new collection, click on the Create Collection button!</p>
-		<button class="btn btn-default" ng-click="addCollectionButton()">Create Collection</button>
+		<h1>Create New Collection</h1>
+		<p>Fill out the form below to create a new collection!<br>
+		Once created, you and other users will be able to create posts inside the new collection!</p>
 	</div>
-	<div class="collection-wrap">
-		<div class="collection col-md-3" ng-repeat="collection in collectionList" >
-			<img ng-src="{{collection.image}}" alt="Image of {{collection.name}}">
-			<h3>{{collection.name}}</h3>
-			<button class="btn btn-default" ng-click="removeFollow(collection)">Unfollow</button>
-		</div>
-	</div>
+	<p class="alert alert-success col-md-6 col-md-offset-3" ng-show="newCollect">You have successfully added a new collection!</p>
+	<div ng-include="'app/dashboard/dashboard-addCollection.html'"></div>
 </div>

@@ -5,17 +5,22 @@
 
 .masonry-wrap {
 	display: block;
-	margin: 150px auto;
+	margin: 190px auto;
 	.masonry-brick { 
 		border: 2px solid black;
+		border-radius: 20px;
 		width: 220px;
 		margin-bottom: 5px;
+		background: $panel;
 		h1 {
 			font-size: 25px;
 			font-weight: bold;
 		}
 		img {
 			width: 216px;
+			margin-bottom: 2px solid black;
+			border-top-right-radius: 20px;
+			border-top-left-radius: 20px;
 		}
 		.postedby {
 			

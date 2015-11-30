@@ -1,40 +1,40 @@
 'use strict';
 
 angular.module('pinterestCloneApp')
-  .controller('DashboardCtrl', function ($scope, $http, $timeout, dialogs, Auth, socket) {
+  .controller('DashboardCtrl', function ($scope, $http, $timeout, $location, Auth, socket) {
   	$scope.getCurrentUser = Auth.getCurrentUser;
     $scope.user = $scope.getCurrentUser();
+    $scope.username = $scope.user.username;
     $scope.collection = {};
+
     $scope.posts = true;
     $scope.likes = false;
     $scope.collections = false;
+    $scope.newCollect = false;
+
+    $scope.savedChanges = false;
 
     $scope.userid = $scope.user;
 
     $timeout(function() {
-    	$http.get('/api/users/getfollow/' + $scope.user._id).then(function(response) {
-	    	$scope.collectionList = response.data;
-	    	socket.syncUpdates('collection', $scope.collectionList, function(event, item, array) {
-	    		console.log(event);
-	    		console.log(item);
-	    		console.log(array);
-	    	});
-	    }, function(err) {
-	    	console.log(err);
-	    });
-        console.log($scope.user.posts);
+    	// $http.get('/api/users/getfollow/' + $scope.user._id).then(function(response) {
+	    // 	$scope.collectionList = response.data;
+	    // 	socket.syncUpdates('collection', $scope.collectionList, function(event, item, array) {
+	    // 		console.log(event);
+	    // 		console.log(item);
+	    // 		console.log(array);
+	    // 	});
+	    // }, function(err) {
+	    // 	console.log(err);
+	    // });
         $scope.postList = $scope.user.posts;
-        console.log($scope.postList);
+        if ($scope.postList === undefined || $scope.postList.length === 0) {
+            $scope.noPosts = true;
+        }   else {
+            $scope.noPosts = false;
+        }
+        
 
-        // if ($scope.user.posts !== undefined) {
-        //     console.log(JSON.stringify($scope.user.posts));
-        //     // $http.get('/api/posts/getPosts', $scope.user.posts).then(function(response) {
-        //     //     console.log("Success!");
-        //     //     console.log(response);
-        //     // }, function(err) {
-        //     //     console.log(err);
-        //     // });
-        // }
     }, 1000);
 
     
@@ -42,56 +42,68 @@ angular.module('pinterestCloneApp')
     //     console.log(value);
     // });
    
-    $scope.addCollectionButton = function() {
-    	dialogs.create('app/dashboard/dashboard-addCollection.html');
-    }
 
     $scope.addCollection = function(form) {
-    	$http.post('/api/collections', {name: $scope.collection.name, image: $scope.collection.image, author: $scope.user.email}).then(function(response) {
+    	$http.post('/api/collections', {name: $scope.collection.name, author: $scope.user.email}).then(function(response) {
     		console.log("Successfully posted new collection!")
     		console.log(response);
+            $scope.collection.name = "";
+            $scope.newCollect = true;
+            //$scope.$apply();
+            console.log("New Collect");
+            console.log($scope.newCollect);
     	}, function(err) {
     		console.log(err);
     	});
     	
-    	$http.post('/api/users/addfollow/'+$scope.user._id, {follow: $scope.collection}).then(function(response) {
-    		console.log("Successfully Added Follow Target");
-    	}, function(err) {
-    		console.log(err);
-    	});
+    	// $http.post('/api/users/addfollow/'+$scope.user._id, {follow: $scope.collection}).then(function(response) {
+    	// 	console.log("Successfully Added Follow Target");
+    	// }, function(err) {
+    	// 	console.log(err);
+    	// });
     }
 
-    $scope.removeFollow = function(collection) {
-    	$http.post('/api/users/removefollow/'+$scope.user._id, {name: collection.name}).then(function(response) {
-    		console.log("The Followed Topic has been removed!");
-    		socket.syncUpdates('collection', $scope.collectionList);
-    	}, function(err) {
-    		console.log(err);
-    	})
+    // $scope.removeFollow = function(collection) {
+    // 	$http.post('/api/users/removefollow/'+$scope.user._id, {name: collection.name}).then(function(response) {
+    // 		console.log("The Followed Topic has been removed!");
+    // 		socket.syncUpdates('collection', $scope.collectionList);
+    // 	}, function(err) {
+    // 		console.log(err);
+    // 	})
+    // }
+
+    $scope.changeInfo = function(form) {
+        $http.post('/api/users/profile-edit', form).then(function(response) {
+            $location.path('/dashboard');
+            $scope.savedChanges = true;
+            $timeout(function() {
+                $scope.savedChanges = true;
+                $scope.$apply();
+            }, 500);
+        }, function(err) {
+            console.log(err);
+        });
     }
 
     $scope.getPosts = function() {
+        //$scope.newCollect = false;
     	$scope.posts = true;
-    	$scope.likes = false;
+    	$scope.profile = false;
     	$scope.collections = false;
     }
 
-    $scope.getLikes = function() {
+    $scope.getCollections = function() {
+        //$scope.newCollect = false;
     	$scope.posts = false;
-    	$scope.likes = true;
-    	$scope.collections = false;
-    }
-
-    $scope.getFollows = function() {
-    	$scope.posts = false;
-    	$scope.likes = false;
+    	$scope.profile = false;
     	$scope.collections = true;
     }
 
-
-
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('books');
-    });
+    $scope.getProfile = function() {
+        //$scope.newCollect = false;
+        $scope.posts = false;
+        $scope.profile = true;
+        $scope.collections = false;
+    }
 
   });

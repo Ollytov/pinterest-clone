@@ -8,10 +8,21 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * App-wide Styles
  */
 
+$background: #322628;
+$panel: #FEFAF9;
+
+body {
+	background: $background;
+}
+
+body > div > div:nth-child(1) > div {
+	margin-bottom: 0;
+}
 
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
+@import 'addpost/addpost.scss';
 @import 'admin/admin.scss';
 @import 'dashboard/dashboard.scss';
 @import 'main/main.scss';

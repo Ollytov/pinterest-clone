@@ -35,7 +35,8 @@ exports.create = function(req, res) {
     description: req.body.postDescription,
     postCollection: req.body.postCollection.name,
     author: req.body.author,
-    date: moment().calendar(),
+    authorid: req.body.authorid,
+    date: moment(Date.now()).format('MMMM Do YYYY'),
     likes: 0
   });
 

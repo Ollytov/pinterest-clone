@@ -10,12 +10,12 @@ angular.module('pinterestCloneApp')
 
       if(form.$valid) {
         Auth.login({
-          email: $scope.user.email,
+          username: $scope.user.username,
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
+          // Logged in, redirect to dashboard
+          $location.path('/dashboard');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

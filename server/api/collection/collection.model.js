@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
 
 var CollectionSchema = new Schema({
   name: {type: String, lowercase: true},
-  image: String,
   author: String
 });
 

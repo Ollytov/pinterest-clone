@@ -1,6 +1,9 @@
 <div class="allposts-wrap">
-	<h1 class="text-center">Posts</h1>
-	<p class="text-center">Below you will find all of the posts that you have created!</p>
+	<h1 class="text-center">Your Posts</h1>
+	<p class="text-center">Below you will find all of the posts that you have created!<br>
+		To add more posts, click the link in the navigation bar titled "Add Post". The new post will automatically be added here!</p>
+
+	<h2 ng-show="noPosts" class="text-center">No Posts Found!</h2>
 
 	<div class="masonry-wrap" masonry="{'gutter': 10, 'isFitWidth': true}">
 
@@ -10,7 +13,7 @@
 			<p class="text-center">{{post.description}}</p>
 			<hr>
 			<p class="text-center"><strong>Posted By:</strong><br>
-			{{post.author}},<br>
+			<a href="/posts/wall/{{post.authorid}}">{{post.author}}</a><br>
 			{{post.date}}</p>
 			<hr>
 			<p class="postCollect text-center">Found in: <a href="/posts/category/{{post.postCollection}}">{{post.postCollection}}</a></p>

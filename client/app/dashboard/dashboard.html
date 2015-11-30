@@ -1,20 +1,23 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<header class="col-md-12 text-center">
-	<img ng-src="{{user.image}}" err-src="assets/images/default_profile_picture.png">
-	<h1>Welcome NAME{{Firstname}}</h1>
-</header>
-<div class="container">
-	<div class="dashboard-wrapper row">
-		<div class="link-section col-md-6 col-md-offset-3">
-			<ul>
-				<li><a href="" ng-click="getPosts()">Posts</a></li>
-				<li><a href="" ng-click="getLikes()">Likes</a></li>
-				<li><a href="" ng-click="getFollows()">Following</a></li>
-			</ul>
-		</div>
-		<div class="main-section col-md-12">
-			<div ng-include="'app/dashboard/dashboard-post-wrap.html'" ng-show="posts"></div>
-			<div ng-include="'app/dashboard/dashboard-collection-wrap.html'" ng-show="collections"></div>
+<div class="dashboard-container">
+	<header class="col-md-12 text-center">
+		<img ng-src="{{user.picture}}" profile-err-src="assets/images/default_profile_picture.png" class="dash-image">
+		<h1 ng-cloak>Welcome {{username}}!</h1>
+	</header>
+	<div class="container">
+		<div class="dashboard-wrapper row">
+			<div class="link-section col-md-6 col-md-offset-3 text-center">
+				<ul>
+					<li><a href="" ng-click="getPosts()" class="btn btn-default">Your Posts</a></li>
+					<li><a href="" ng-click="getCollections()" class="btn btn-default">New Collection</a></li>
+					<li><a href="" ng-click="getProfile()" class="btn btn-default">Edit Profile</a></li>
+				</ul>
+			</div>
+			<div class="main-section col-md-12">
+				<div ng-include="'app/dashboard/dashboard-post-wrap.html'" ng-show="posts"></div>
+				<div ng-include="'app/dashboard/dashboard-collection-wrap.html'" ng-show="collections"></div>
+				<div ng-include="'app/dashboard/dashboard-editprofile.html'" ng-show="profile"></div>
+			</div>
 		</div>
 	</div>
 </div>

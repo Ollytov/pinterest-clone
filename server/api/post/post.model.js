@@ -9,6 +9,7 @@ var PostSchema = new Schema({
   description: String,
   postCollection: String,
   author: String,
+  authorid: String,
   date: String,
   likes: Number
 });
