@@ -13,6 +13,7 @@ angular.module('pinterestCloneApp')
   		}
 
   	}, function(err) {
-		$location.path('/posts');
+      console.log(err);
+		  $location.path('/posts');
   	});
   });

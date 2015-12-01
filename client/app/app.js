@@ -47,19 +47,19 @@ angular.module('pinterestCloneApp', [
     return {
       link: function(scope, element, attrs) {
         element.bind('error', function() {
-          if (attrs.ngHide != attrs.errSrc) {
+          if (attrs.ngHide !== attrs.errSrc) {
             attrs.$set('class', 'ng-hide');
           }
         });
       }
-    }
+    };
   })
 
   .directive('profileErrSrc', function() {
     return {
       link: function(scope, element, attrs) {
         element.bind('error', function() {
-          if (attrs.ngSrc != attrs.profileErrSrc) {
+          if (attrs.ngSrc !== attrs.profileErrSrc) {
             attrs.$set('ngSrc', attrs.profileErrSrc);
           }
         });
@@ -69,7 +69,7 @@ angular.module('pinterestCloneApp', [
           }
         });
       }
-    }
+    };
   })
 
   .run(function ($rootScope, $location, Auth) {

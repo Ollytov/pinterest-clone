@@ -14,17 +14,15 @@ angular.module('pinterestCloneApp')
       });
     }, 1000);
 
-    $scope.addPost = function(form, cb) {
-      $scope.newPost.author = $scope.getCurrentUser().username || "Guest";
+    $scope.addPost = function() {
+      $scope.newPost.author = $scope.getCurrentUser().username;
       $scope.newPost.authorid = $scope.getCurrentUser()._id;
       console.log($scope.newPost);
 
       $http.post('/api/posts/', $scope.newPost).then(function(response) {
-        console.log("This is the response");
+        console.log('This is the response');
         console.log(response);
         $http.post('/api/users/addpost', {userid: $scope.getCurrentUser()._id, postid: response.data}).then(function(response) {
-            console.log("Success!");
-            console.log(response);
             $location.path('/posts');
           }, function(err) {
             console.log(err);

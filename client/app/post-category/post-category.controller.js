@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pinterestCloneApp')
-  .controller('PostCategoryCtrl', function ($scope, $http, $state, $stateParams) {
+  .controller('PostCategoryCtrl', function ($scope, $http, $state, socket) {
     $scope.category = $state.params.category;
     $http.get('/api/posts/').then(function(response) {
         var tempList = [];
