@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center desc-block">
+		<h1 class="post-category">Posts By {{username}}</h1>
+		<div class="form-group">
+			<label>Search</label>
+			<input type="text" class="form-control" placeholder="Search" ng-model="query">
+		</div>
+	</div>
+	<div class="noposts col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<h2 ng-show="noPosts" class="text-center">No Posts Found!</h2>
+	</div>
+	<div class="masonry-wrap" masonry="{'gutter': 10, 'isFitWidth': true}">
+
+		<div class="masonry-brick" ng-repeat="post in postList | filter:query">
+			<img ng-src="{{post.image}}" err-src="assets/images/image_notfound.jpg">
+			<h1 class="text-center">{{post.title}}</h1>
+			<p class="text-center">{{post.description}}</p>
+			<hr>
+			<p class="text-center"><strong>Posted By:</strong><br>
+			<a href="/posts/wall/{{post.authorid}}">{{post.author}}</a><br>
+			{{post.date}}</p>
+			<hr>
+			<p class="postCollect text-center">Found in: <a href="/posts/category/{{post.postCollection}}">{{post.postCollection}}</a></p>
+		</div>
+
+	</div>
+</div>

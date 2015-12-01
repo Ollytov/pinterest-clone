@@ -1,0 +1,33 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';
+
+/**
+ * App-wide Styles
+ */
+
+$background: #322628;
+$panel: #FEFAF9;
+
+body {
+	background: $background;
+}
+
+body > div > div:nth-child(1) > div {
+	margin-bottom: 0;
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'account/login/login.scss';
+@import 'addpost/addpost.scss';
+@import 'admin/admin.scss';
+@import 'dashboard/dashboard.scss';
+@import 'main/main.scss';
+@import 'post-category/post-category.scss';
+@import 'posts/posts.scss';
+@import 'userwall/userwall.scss';
+@import 'modal/modal.scss';
+// endinjector

@@ -1,0 +1,10 @@
+<form name="form" class="addCollection col-md-6 col-md-offset-3" ng-submit="addCollection(form)" ng-controller="DashboardCtrl">
+	<div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+	                                    'has-error': form.name.$invalid && submitted }">
+	  <label>Collection Name</label>
+	  <input type="text" name="name" class="form-control" ng-model="collection.name"required/>
+	  <p class="help-block" ng-show="form.name.$error.required && submitted">A name is required</p>
+	</div>
+	
+	<input type="submit" value="Add Collection" class="btn btn-default btn-save">
+</form>
