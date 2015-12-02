@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CollectionSchema = new Schema({
-  name: {type: String, lowercase: true},
+  name: String,
   author: String
 });
 
