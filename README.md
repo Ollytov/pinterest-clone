@@ -1,4 +1,4 @@
-# pinterest-clone
+# Vocal-Board
 Vocal-Board is a pinterest-like application, where users can create an account and share pictures that other users can view. 
 This application utilizes OAuth technologies, allowing users to create an account and login through Twitter, Facebook, or Google+.
 
