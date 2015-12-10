@@ -57,10 +57,7 @@ angular.module('pinterestCloneApp')
        * @return {Promise}
        */
       createUser: function(user, callback) {
-        console.log(user);
-        console.log(callback);
         var cb = callback || angular.noop;
-        console.log(cb);
         return User.save(user,
           function(data) {
             $cookieStore.put('token', data.token);

@@ -38,6 +38,11 @@ angular.module('pinterestCloneApp')
     	
     };
 
+    $scope.logout = function() {
+      Auth.logout();
+      $location.path('/login');
+    };
+
     $scope.changeInfo = function(form) {
         $http.post('/api/users/profile-edit', form).then(function() {
             $location.path('/dashboard');

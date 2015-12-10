@@ -6,6 +6,8 @@ angular.module('pinterestCloneApp')
     $scope.errors = {};
 
     $scope.register = function(form) {
+      console.log("resgistering");
+      console.log(form);
       $scope.submitted = true;
 
       if(form.$valid) {
@@ -24,6 +26,8 @@ angular.module('pinterestCloneApp')
 
           // Update validity of form fields that match the mongoose errors
           angular.forEach(err.errors, function(error, field) {
+            console.log("This is the Form Field");
+            console.log(form[field]);
             form[field].$setValidity('mongoose', false);
             $scope.errors[field] = error.message;
           });
