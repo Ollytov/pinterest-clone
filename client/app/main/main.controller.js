@@ -6,6 +6,16 @@ angular.module('pinterestCloneApp')
     $scope.errors = {};
     $scope.initCheck = true;
 
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $timeout(function() {
+      if ($scope.isLoggedIn() === true) {
+        $location.path('/posts');
+      }
+    }, 1000);
+
+
     $scope.register = function(form) {
       $scope.submitted = true;
 
